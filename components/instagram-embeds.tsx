@@ -9,11 +9,13 @@ type Props = {
 export function InstagramEmbeds({ postUrls }: Props) {
   return (
     <div>
-      {/* Script officiel Instagram (une seule fois) */}
-      <Script src="https://www.instagram.com/embed.js" strategy="afterInteractive" />
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy="afterInteractive"
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {postUrls.slice(0, 6).map((url) => (
+        {postUrls.map((url) => (
           <div
             key={url}
             className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-3"
