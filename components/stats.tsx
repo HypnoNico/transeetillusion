@@ -1,76 +1,47 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-function useInView(threshold = 0.2) {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const el = ref.current;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.some((e) => e.isIntersecting);
-        if (visible) {
-          setInView(true);
-          obs.disconnect();
-        }
-      },
-      { threshold }
-    );
-
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return { ref, inView };
-}
-
-function CountUp({ to }: { to: number }) {
-  const [val, setVal] = useState(0);
+function Counter({ value }: { value: number }) {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let raf = 0;
-    const start = performance.now();
-    const dur = 900;
-
-    const tick = (t: number) => {
-      const p = Math.min(1, (t - start) / dur);
-      setVal(Math.round(to * (0.15 + 0.85 * p)));
-      if (p < 1) raf = requestAnimationFrame(tick);
+    let start = 0;
+    const step = () => {
+      start += Math.ceil(value / 40);
+      if (start >= value) return setCount(value);
+      setCount(start);
+      requestAnimationFrame(step);
     };
+    step();
+  }, [value]);
 
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [to]);
-
-  return <span>{val}</span>;
+  return <span>{count}</span>;
 }
 
-export function StatsStrip() {
-  const { ref, inView } = useInView(0.2);
-
-  const stats = [
-    { k: 60, label: "shows & animations réalisés" },
-    { k: 120, label: "volontaires sur scène (approx.)" },
-    { k: 4, label: "formats : scène / close-up / entreprise / formation" },
-  ];
-
+export function Stats() {
   return (
-    <div ref={ref} className="grid gap-4 sm:grid-cols-3">
-      {stats.map((s) => (
-        <div
-          key={s.label}
-          className="rounded-2xl border border-white/10 bg-white/5 p-5"
-        >
-          <div className="text-3xl font-extrabold text-blue-300">
-            +{inView ? <CountUp to={s.k} /> : 0}
-          </div>
-          <div className="mt-2 text-sm text-white/70">{s.label}</div>
-        </div>
-      ))}
+    <div className="flex flex-wrap justify-center gap-12 text-center">
+      <div>
+        <p className="text-4xl font-bold text-blue-400">
+          +<Counter value={60} />
+        </p>
+        <p className="text-gray-400">Shows réalisés</p>
+      </div>
+
+      <div>
+        <p className="text-4xl font-bold text-blue-400">
+          +<Counter value={120} />
+        </p>
+        <p className="text-gray-400">Volontaires hypnotisés</p>
+      </div>
+
+      <div>
+        <p className="text-4xl font-bold text-blue-400">
+          <Counter value={4} />
+        </p>
+        <p className="text-gray-400">Formats d’animation</p>
+      </div>
     </div>
   );
 }
