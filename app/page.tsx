@@ -6,12 +6,8 @@ import { Testimonials } from "@/components/testimonials";
 
 export default function Home() {
   const posts = [
-    "https://www.instagram.com/reel/DP_pZZyCGRp/",
     "https://www.instagram.com/reel/DLn1OuTonKw/",
-    "https://www.instagram.com/reel/DTU4JXUCLke/",
-    "https://www.instagram.com/reel/DPeumlDCCOM/",
-    "https://www.instagram.com/reel/DPIwScbCNEI/",
-    "https://www.instagram.com/reel/DOTat13iLM_/",
+    "https://www.instagram.com/reel/DP_pZZyCGRp/",
   ];
 
   return (
