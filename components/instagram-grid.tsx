@@ -2,21 +2,31 @@
 
 import Script from "next/script";
 
-export function InstagramGrid() {
-  return (
-    <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-white/5">
-      <Script
-        src="https://cdn.lightwidget.com/widgets/lightwidget.js"
-        strategy="afterInteractive"
-      />
+type Props = {
+  postUrls: string[];
+};
 
-      <iframe
-        src="https://lightwidget.com/widgets/401a32266ff8576eb279f4e57398738b.html"
-        className="w-full"
-        style={{ height: 520 }}
-        scrolling="no"
-        allowTransparency
-      />
+export function InstagramEmbeds({ postUrls }: Props) {
+  return (
+    <div>
+      {/* Script officiel Instagram (une seule fois) */}
+      <Script src="https://www.instagram.com/embed.js" strategy="afterInteractive" />
+
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {postUrls.slice(0, 6).map((url) => (
+          <div
+            key={url}
+            className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-3"
+          >
+            <blockquote
+              className="instagram-media"
+              data-instgrm-permalink={url}
+              data-instgrm-version="14"
+              style={{ background: "transparent", margin: 0 }}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
