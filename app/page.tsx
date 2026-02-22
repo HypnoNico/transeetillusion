@@ -1,32 +1,42 @@
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center px-6 text-center">
-      <h1 className="text-4xl md:text-6xl font-extrabold">
-        Nicolas  Peillard
-      </h1>
+<div className="max-w-6xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-12 items-center">
 
-      <p className="mt-4 text-lg text-gray-300 max-w-xl">
-        Spectacles, prestations et formations en hypnose de spectacle.
-      </p>
+  {/* TEXTE À GAUCHE */}
+  <div>
+    <h1 className="text-4xl font-extrabold mb-4">
+      Hypnose & mentalisme pour marquer les esprits
+    </h1>
 
-      <div className="mt-8 flex flex-col sm:flex-row gap-4">
-        <a
-          href="/contact"
-          className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-xl font-semibold"
-        >
-          Demander un devis
-        </a>
-        <a
-          href="https://instagram.com/HypnoNico"
-          className="border border-white/20 hover:bg-white/10 px-6 py-3 rounded-xl"
-        >
-          DM Instagram
-        </a>
-      </div>
+    <p className="text-white/70 mb-6">
+      Shows, close-up et formations. Expérience fun, élégante et mémorable.
+    </p>
 
-      <p className="mt-10 text-sm text-gray-400">
-        HypnoNico — Transe & Illusion
-      </p>
-    </main>
-  );
-}
+    <a
+      href="https://instagram.com/HypnoNico"
+      target="_blank"
+      className="inline-block bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-full"
+    >
+      Voir Instagram
+    </a>
+  </div>
+
+  {/* TÉLÉPHONE À DROITE */}
+  <div className="flex justify-center">
+    <div className="relative w-[260px]">
+
+      {/* IMAGE DU TÉLÉPHONE */}
+      <img
+        src="/phone.png"
+        alt="Téléphone"
+        className="w-full"
+      />
+
+      {/* INSTAGRAM À L’INTÉRIEUR */}
+      <img
+        src="/instagram.jpg"
+        alt="Instagram HypnoNico"
+        className="absolute top-[8%] left-[7%] w-[86%] h-[84%] rounded-xl object-cover"
+      />
+    </div>
+  </div>
+
+</div>
