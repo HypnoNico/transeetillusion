@@ -1,34 +1,24 @@
 "use client";
 
 import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
 
-type Props = {
-  postUrls: string[];
-};
+type Props = { postUrls: string[] };
 
 export function InstagramEmbeds({ postUrls }: Props) {
-  return (
-    <div>
-      <Script
-        src="https://www.instagram.com/embed.js"
-        strategy="afterInteractive"
-      />
+  const ref = useRef<HTMLDivElement | null>(null);
+  const [scriptReady, setScriptReady] = useState(false);
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {postUrls.map((url) => (
-          <div
-            key={url}
-            className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-3"
-          >
-            <blockquote
-              className="instagram-media"
-              data-instgrm-permalink={url}
-              data-instgrm-version="14"
-              style={{ background: "transparent", margin: 0 }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const el = ref.current;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.some((e) => e.isIntersecting);
+        if (!visible) return;
+
+        // Reprocess embeds when section becomes visible
+        // @ts-ignore
+        if (typeof window !== "undefined" && window.instgrm?.Embeds?.process) {
+          // @ts-ignore
