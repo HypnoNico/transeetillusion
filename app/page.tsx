@@ -1,3 +1,14 @@
+<div className="relative h-screen overflow-hidden bg-black">
+  <div className="absolute inset-0 hero-animated" />
+  <div className="absolute inset-0 bg-black/60" />
+
+  <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+    <h1 className="text-6xl font-bold">Hypnose & mentalisme live</h1>
+    <p className="text-gray-400 mt-4">
+      Spectacles immersifs & expériences inoubliables
+    </p>
+  </div>
+</div>
 import { Reveal } from "@/components/reveal";
 import { PhoneFrame } from "@/components/phone-frame";
 import { InstagramEmbeds } from "@/components/instagram-embeds";
