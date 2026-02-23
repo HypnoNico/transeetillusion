@@ -1,5 +1,3 @@
-// components/prestations-cards.tsx
-
 type Props = {
   phoneNumber: string;
   phoneLabel: string;
@@ -29,7 +27,7 @@ export function PrestationsCards({ phoneNumber, phoneLabel }: Props) {
       title: "Entreprises / CSE",
       desc: "Animation premium pour fédérer et marquer les équipes.",
       bullets: ["Team building", "Séminaires", "Cohésion"],
-      cta: { label: "Demande entreprise", href: "/contact" },
+      cta: { label: "Demande entreprise / CSE", href: "/contact" },
       badge: "Pro",
     },
   ];
