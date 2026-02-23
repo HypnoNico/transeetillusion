@@ -7,7 +7,7 @@ body {
   color: white;
 }
 
-/* Fond animé bleu nuit */
+/* Fond animé bleu nuit (hero) */
 .hero-animated {
   background:
     radial-gradient(circle at 20% 30%, rgba(59,130,246,.35), transparent 45%),
