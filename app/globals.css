@@ -21,3 +21,31 @@ body {
   from { transform: translateY(-5%) translateX(-5%); }
   to   { transform: translateY(5%) translateX(5%); }
 }
+/* léger “shine” premium sur les cartes */
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+.card-shine::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,.16), transparent 45%);
+  transform: translateX(0);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.card-shine:hover::before {
+  opacity: 1;
+}
+
+/* micro-amélioration : focus clavier visible */
+a:focus-visible {
+  outline: 2px solid rgba(59,130,246,.7);
+  outline-offset: 3px;
+  border-radius: 9999px;
+}
