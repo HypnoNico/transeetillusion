@@ -1,277 +1,32 @@
-import SeoJsonLd from "@/app/seo-jsonld";
-import { PrestationsCards } from "@/components/prestations-cards";
-import { Reveal } from "@/components/reveal";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-function MiniIcon({ name }: { name: "shield" | "respect" | "custom" }) {
-  if (name === "shield") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
-        <path
-          d="M12 2l8 4v7c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6l8-4Z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M9 12l2 2 4-5"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
+.hero-animated {
+  background: radial-gradient(
+      ellipse 80% 50% at 50% -20%,
+      rgba(59, 130, 246, 0.3),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 100% 80% at 80% 50%,
+      rgba(168, 85, 247, 0.15),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 100% 80% at 20% 50%,
+      rgba(14, 165, 233, 0.15),
+      transparent
     );
-  }
-  if (name === "respect") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
-        <path
-          d="M12 21s-7-4.35-9.5-9A5.7 5.7 0 0 1 12 6a5.7 5.7 0 0 1 9.5 6c-2.5 4.65-9.5 9-9.5 9Z"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
-      <path
-        d="M12 3v4M12 17v4M4 12h4M16 12h4"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <path
-        d="M7.2 7.2l2.8 2.8M14 14l2.8 2.8M16.8 7.2 14 10M10 14 7.2 16.8"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="3.2"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-    </svg>
-  );
+  animation: hero-pulse 8s ease-in-out infinite;
 }
 
-export default function Home() {
-  const phoneNumber = "+33756966024";
-  const phoneLabel = "07 56 96 60 24";
-
-  return (
-    <main className="bg-black text-white overflow-x-hidden">
-      <SeoJsonLd />
-
-      {/* HERO */}
-      <section className="relative min-h-[88vh] overflow-hidden flex items-center justify-center text-center px-6 bg-black">
-        <div className="absolute inset-0 hero-animated" />
-        <div className="absolute inset-0 bg-black/60" />
-
-        <div className="relative z-10 mx-auto max-w-5xl">
-          <Reveal>
-            <p className="text-blue-300/90 font-medium tracking-wide">
-              HypnoNico — Transe & Illusion
-            </p>
-          </Reveal>
-
-          <Reveal delayMs={80}>
-            <h1 className="mt-4 text-4xl sm:text-6xl xl:text-7xl font-extrabold leading-tight">
-              Hypnose & mentalisme
-              <span className="block text-blue-400 mt-3">
-                pour marquer les esprits
-              </span>
-            </h1>
-          </Reveal>
-
-          <Reveal delayMs={140}>
-            <p className="mt-6 text-white/75 text-lg sm:text-xl max-w-3xl mx-auto">
-              Spectacles interactifs, close-up et animations événementielles.
-              Un cadre clair, une expérience mémorable.
-            </p>
-          </Reveal>
-
-          <Reveal delayMs={200}>
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a
-                href="/contact"
-                className="px-8 py-4 rounded-full bg-blue-500 hover:bg-blue-600 transition font-semibold"
-              >
-                Demander un devis
-              </a>
-
-              <a
-                href={`tel:${phoneNumber}`}
-                className="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition font-semibold"
-                aria-label={`Appeler ${phoneLabel}`}
-              >
-                Appeler {phoneLabel}
-              </a>
-
-              <a
-                href="https://instagram.com/hypnonico"
-                target="_blank"
-                className="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition font-semibold"
-              >
-                DM Instagram
-              </a>
-            </div>
-          </Reveal>
-
-          {/* Bandeau garanties */}
-          <Reveal delayMs={260}>
-            <div className="mt-10 mx-auto max-w-4xl">
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
-                  <div className="flex items-center gap-3 text-blue-200">
-                    <span className="h-10 w-10 rounded-2xl bg-blue-500/15 border border-blue-400/15 flex items-center justify-center">
-                      <MiniIcon name="shield" />
-                    </span>
-                    <div className="font-semibold">Cadre & sécurité</div>
-                  </div>
-                  <p className="mt-3 text-sm text-white/70">
-                    Brief clair, environnement maîtrisé, rythme adapté au public.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
-                  <div className="flex items-center gap-3 text-blue-200">
-                    <span className="h-10 w-10 rounded-2xl bg-blue-500/15 border border-blue-400/15 flex items-center justify-center">
-                      <MiniIcon name="respect" />
-                    </span>
-                    <div className="font-semibold">Respect des invités</div>
-                  </div>
-                  <p className="mt-3 text-sm text-white/70">
-                    Jamais dégradant : l’objectif c’est le fun, pas le malaise.
-                  </p>
-                </div>
-
-                <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-left">
-                  <div className="flex items-center gap-3 text-blue-200">
-                    <span className="h-10 w-10 rounded-2xl bg-blue-500/15 border border-blue-400/15 flex items-center justify-center">
-                      <MiniIcon name="custom" />
-                    </span>
-                    <div className="font-semibold">100% sur-mesure</div>
-                  </div>
-                  <p className="mt-3 text-sm text-white/70">
-                    Durée, ton, intensité : je m’adapte à ton lieu et ton public.
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-6 text-sm text-white/55">
-                Événements privés • Entreprises • CSE • Restaurants • Campings • Soirées
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* PRESTATIONS */}
-      <section className="mx-auto max-w-6xl px-6 py-16">
-        <Reveal>
-          <div className="max-w-2xl">
-            <h2 className="text-3xl sm:text-4xl font-extrabold">Prestations</h2>
-            <p className="mt-3 text-white/70">
-              Choisis un format. Je m’adapte à ton lieu, ton public et ton timing.
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="mt-10">
-          <Reveal>
-            <PrestationsCards phoneNumber={phoneNumber} phoneLabel={phoneLabel} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* COMMENT ÇA SE PASSE */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
-        <Reveal>
-          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
-            <h2 className="text-2xl sm:text-3xl font-extrabold">
-              Comment ça se passe ?
-            </h2>
-
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              <Reveal delayMs={0}>
-                <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-                  <div className="text-blue-400 font-bold">1</div>
-                  <h3 className="mt-2 font-semibold text-lg">On échange</h3>
-                  <p className="mt-2 text-white/70 text-sm">
-                    Lieu, durée, type d’événement, ambiance, contraintes.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delayMs={80}>
-                <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-                  <div className="text-blue-400 font-bold">2</div>
-                  <h3 className="mt-2 font-semibold text-lg">Je propose le format</h3>
-                  <p className="mt-2 text-white/70 text-sm">
-                    Une structure claire, rythmée, adaptée au public.
-                  </p>
-                </div>
-              </Reveal>
-
-              <Reveal delayMs={160}>
-                <div className="rounded-2xl border border-white/10 bg-black/40 p-6">
-                  <div className="text-blue-400 font-bold">3</div>
-                  <h3 className="mt-2 font-semibold text-lg">Moment inoubliable</h3>
-                  <p className="mt-2 text-white/70 text-sm">
-                    Interactif, drôle, fluide et respectueux.
-                  </p>
-                </div>
-              </Reveal>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="/contact"
-                className="px-7 py-3 rounded-full bg-blue-500 hover:bg-blue-600 transition font-semibold"
-              >
-                Demander un devis
-              </a>
-
-              <a
-                href={`tel:${phoneNumber}`}
-                className="px-7 py-3 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition font-semibold"
-              >
-                Appeler
-              </a>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* TÉMOIGNAGES */}
-      <section className="mx-auto max-w-6xl px-6 pb-20">
-        <Reveal>
-          <h2 className="text-2xl sm:text-3xl font-extrabold">Témoignages</h2>
-          <p className="mt-3 text-white/70 max-w-2xl">
-            À remplacer par tes vrais avis clients.
-          </p>
-
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {[
-              "Ambiance incroyable, super pro du début à la fin.",
-              "Tout le monde a adoré, c’était fluide et respectueux.",
-              "Moment fort de notre événement d’entreprise.",
-            ].map((txt, i) => (
-              <div
-                key={i}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-white/80"
-              >
-                “{txt}”
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-    </main>
-  );
+@keyframes hero-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
