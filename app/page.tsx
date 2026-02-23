@@ -1,5 +1,4 @@
-// app/page.tsx
-
+import SeoJsonLd from "@/app/seo-jsonld";
 import { PrestationsCards } from "@/components/prestations-cards";
 
 export default function Home() {
@@ -8,6 +7,8 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white overflow-x-hidden">
+      <SeoJsonLd />
+
       {/* HERO */}
       <section className="relative min-h-[88vh] overflow-hidden flex items-center justify-center text-center px-6 bg-black">
         <div className="absolute inset-0 hero-animated" />
@@ -41,8 +42,17 @@ export default function Home() {
             <a
               href={`tel:${phoneNumber}`}
               className="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition font-semibold"
+              aria-label={`Appeler ${phoneLabel}`}
             >
               Appeler {phoneLabel}
+            </a>
+
+            <a
+              href="https://instagram.com/hypnonico"
+              target="_blank"
+              className="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition font-semibold"
+            >
+              DM Instagram
             </a>
           </div>
 
@@ -55,23 +65,18 @@ export default function Home() {
       {/* PRESTATIONS */}
       <section className="mx-auto max-w-6xl px-6 py-16">
         <div className="max-w-2xl">
-          <h2 className="text-3xl sm:text-4xl font-extrabold">
-            Prestations
-          </h2>
+          <h2 className="text-3xl sm:text-4xl font-extrabold">Prestations</h2>
           <p className="mt-3 text-white/70">
             Choisis un format. Je m’adapte à ton lieu, ton public et ton timing.
           </p>
         </div>
 
         <div className="mt-10">
-          <PrestationsCards
-            phoneNumber={phoneNumber}
-            phoneLabel={phoneLabel}
-          />
+          <PrestationsCards phoneNumber={phoneNumber} phoneLabel={phoneLabel} />
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* COMMENT ÇA SE PASSE */}
       <section className="mx-auto max-w-6xl px-6 pb-16">
         <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold">
@@ -122,11 +127,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TEMOIGNAGES */}
+      {/* TÉMOIGNAGES */}
       <section className="mx-auto max-w-6xl px-6 pb-20">
-        <h2 className="text-2xl sm:text-3xl font-extrabold">
-          Témoignages
-        </h2>
+        <h2 className="text-2xl sm:text-3xl font-extrabold">Témoignages</h2>
         <p className="mt-3 text-white/70 max-w-2xl">
           À remplacer par tes vrais avis clients.
         </p>
