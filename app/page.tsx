@@ -1,4 +1,3 @@
-// app/page.tsx
 import { Reveal } from "@/components/reveal";
 import { Testimonials } from "@/components/testimonials";
 import { PrestationsCards } from "@/components/prestations-cards";
