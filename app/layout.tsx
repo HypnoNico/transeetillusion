@@ -1,27 +1,37 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
-import { Footer } from "@/components/footer";
-import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
-  title: {
-    default: `${site.brand} — Spectacles, prestations & formations en hypnose`,
-    template: `%s — ${site.brand}`,
-  },
+  title: "HypnoNico – Hypnose & mentalisme événementiel",
   description:
-    "Spectacles et prestations d’hypnose/mentalisme + formations en hypnose de spectacle. Devis rapide, DM Instagram.",
+    "Spectacles d’hypnose et mentalisme pour événements privés, entreprises, CSE et restaurants. Devis rapide à Aix-en-Provence et région.",
+  keywords: [
+    "hypnose spectacle",
+    "hypnotiseur événementiel",
+    "mentalisme show",
+    "animation entreprise hypnose",
+    "hypnotiseur Aix-en-Provence",
+  ],
+  openGraph: {
+    title: "HypnoNico – Hypnose & mentalisme événementiel",
+    description:
+      "Spectacles d’hypnose et mentalisme pour événements privés et entreprises.",
+    url: "https://transeetillusion.fr",
+    siteName: "HypnoNico",
+    locale: "fr_FR",
+    type: "website",
+  },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="fr">
-      <body className="bg-black text-white">
-        <Navbar />
-        {children}
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
