@@ -1,4 +1,3 @@
-// components/prestations-cards.tsx
 import Link from "next/link";
 
 const items = [
