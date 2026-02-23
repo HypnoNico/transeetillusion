@@ -1,111 +1,71 @@
-import Link from "next/link";
+// components/prestations-cards.tsx
 
-const items = [
-  {
-    title: "Spectacle scène",
-    desc: "Format 30–90 min. Rythme, humour et moments visuels. Idéal soirées, campings, salles, événements.",
-    tags: ["Scène", "Grand public", "30–90 min"],
-  },
-  {
-    title: "Close-up (restaurants / bars)",
-    desc: "Hypnose & mentalisme de table en table : interactions rapides, élégantes et mémorables.",
-    tags: ["Close-up", "Ambiance", "Table à table"],
-  },
-  {
-    title: "Entreprise / séminaire",
-    desc: "Animation premium pour soirée d’entreprise : énergie, cohésion, fun contrôlé, adapté aux contraintes pro.",
-    tags: ["Corporate", "Séminaire", "Sur-mesure"],
-  },
-  {
-    title: "Demande Entreprise / CSE",
-    desc: "Page dédiée décideurs : formats corporate, besoins techniques, cadre & sécurité, proposition rapide par email ou téléphone.",
-    tags: ["CSE", "RH", "Devis rapide"],
-    highlight: true,
-  },
-  {
-    title: "Événements privés",
-    desc: "Mariages, anniversaires, soirées privées : format adaptable, respectueux, jamais gênant.",
-    tags: ["Privé", "Mariage", "Surprise"],
-  },
-  {
-    title: "Formations hypnose",
-    desc: "Formation débutant (2 jours) : structure complète, pratique encadrée, sécurité & gestion des abréactions.",
-    tags: ["Formation", "Débutant", "2 jours"],
-  },
-];
+type Props = {
+  phoneNumber: string;
+  phoneLabel: string;
+};
 
-export function PrestationsCards() {
+export function PrestationsCards({ phoneNumber, phoneLabel }: Props) {
+  const cards = [
+    {
+      title: "Show / Hypnose de spectacle",
+      desc: "Un format scène dynamique, drôle et immersif pour tous publics.",
+      bullets: ["Scène", "Interactivité", "Respect & sécurité"],
+      cta: { label: "Demander un devis", href: "/contact" },
+    },
+    {
+      title: "Close-up & mentalisme",
+      desc: "Effets visuels et hypnose de proximité pour créer l’ambiance.",
+      bullets: ["Cocktails", "Restaurants", "Afterworks"],
+      cta: { label: "Options disponibles", href: "/contact" },
+    },
+    {
+      title: "Événements privés",
+      desc: "Mariages, anniversaires et soirées sur-mesure.",
+      bullets: ["Flexible", "Fun", "Respectueux"],
+      cta: { label: `Appeler ${phoneLabel}`, href: `tel:${phoneNumber}` },
+    },
+    {
+      title: "Entreprises / CSE",
+      desc: "Animation premium pour fédérer et marquer les équipes.",
+      bullets: ["Team building", "Séminaires", "Cohésion"],
+      cta: { label: "Demande entreprise", href: "/contact" },
+      badge: "Pro",
+    },
+  ];
+
   return (
-    <section className="max-w-7xl mx-auto px-6 py-24">
-      <div className="text-center max-w-3xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold">Prestations</h2>
-        <p className="mt-4 text-white/70">
-          Choisis un format, je m’adapte au lieu, au public et à l’énergie de la soirée.
-        </p>
-      </div>
+    <div className="grid gap-6 md:grid-cols-2">
+      {cards.map((c) => (
+        <div
+          key={c.title}
+          className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-7 hover:bg-white/[0.05] transition"
+        >
+          {c.badge && (
+            <span className="absolute top-5 right-5 text-xs font-semibold px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-200">
+              {c.badge}
+            </span>
+          )}
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {items.map((it) => (
-          <div
-            key={it.title}
-            className={`group rounded-2xl border bg-white/5 p-6 transition ${
-              it.highlight
-                ? "border-blue-400/30 bg-blue-500/10 hover:bg-blue-500/15"
-                : "border-white/10 hover:bg-white/7"
-            }`}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <h3 className="text-xl font-semibold">{it.title}</h3>
-              <span
-                className={`h-10 w-10 rounded-xl border flex items-center justify-center ${
-                  it.highlight
-                    ? "bg-blue-500/20 border-blue-400/25 text-blue-200"
-                    : "bg-blue-500/15 border-blue-400/15 text-blue-200"
-                }`}
-              >
-                ✦
-              </span>
-            </div>
+          <h3 className="text-xl font-extrabold">{c.title}</h3>
+          <p className="mt-3 text-white/70">{c.desc}</p>
 
-            <p className="mt-3 text-white/70 leading-relaxed">{it.desc}</p>
+          <ul className="mt-5 space-y-2 text-sm text-white/70">
+            {c.bullets.map((b) => (
+              <li key={b}>• {b}</li>
+            ))}
+          </ul>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {it.tags.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs rounded-full border border-white/10 bg-black/30 px-3 py-1 text-white/70"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center rounded-full bg-blue-500 hover:bg-blue-600 transition px-5 py-2.5 font-semibold"
-              >
-                Demander un devis
-              </Link>
-
-              <a
-                href="tel:+33756966024"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 hover:border-blue-400 hover:text-blue-200 transition px-5 py-2.5"
-              >
-                Appeler
-              </a>
-
-              <a
-                href="https://instagram.com/hypnonico"
-                target="_blank"
-                className="inline-flex items-center justify-center rounded-full border border-white/20 hover:border-blue-400 hover:text-blue-200 transition px-5 py-2.5"
-              >
-                DM Instagram
-              </a>
-            </div>
+          <div className="mt-7">
+            <a
+              href={c.cta.href}
+              className="inline-flex rounded-full px-6 py-3 border border-white/15 hover:border-white/30 hover:bg-white/5 transition font-semibold"
+            >
+              {c.cta.label}
+            </a>
           </div>
-        ))}
-      </div>
-    </section>
+        </div>
+      ))}
+    </div>
   );
 }
